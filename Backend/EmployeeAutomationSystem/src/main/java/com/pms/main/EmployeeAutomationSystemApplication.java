@@ -12,7 +12,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class EmployeeAutomationSystemApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(EmployeeAutomationSystemApplication.class, args);
+
 	}
 
 }
