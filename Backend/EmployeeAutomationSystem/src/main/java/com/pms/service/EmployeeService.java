@@ -2,6 +2,7 @@ package com.pms.service;
 
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,26 @@ public class EmployeeService {
 
 	        // Save the employee to the database
 	        return employeeRepository.save(employee); 
+	    }
+	 
+	 public boolean replacePasswordIfValid(int empId, String defaultPassword, String newPassword) {
+	        // Find the employee by ID
+	        Optional<Employee> employeeOptional = employeeRepository.findById(empId);
+
+	        if (employeeOptional.isPresent()) {
+	            Employee employee = employeeOptional.get();
+
+	            // Check if the provided default password matches the one in the database
+	            if (employee.getDefaultPassword().equals(defaultPassword)) {
+	                // Update the password to the new password
+	                employee.setDefaultPassword(newPassword);
+	                employeeRepository.save(employee); // Save the updated employee
+	                return true;
+	            }
+	        }
+
+	        // Return false if the employee doesn't exist or the passwords don't match
+	        return false;
 	    }
 
 	
