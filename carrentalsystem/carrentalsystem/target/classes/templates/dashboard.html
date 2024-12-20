@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CarCaddy</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        .navbar {
+            background-color: #1f1f1f;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .navbar .brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .navbar button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .navbar button:hover {
+            background-color: #007bff;
+        }
+        .dashboard-container {
+            margin: 20px auto;
+            width: 90%;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .dashboard-header h1 {
+            font-size: 1.5em;
+            color: #007bff;
+        }
+        .dashboard-header button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .dashboard-header button:hover {
+            background-color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        th, td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            color: #f0f0f0;
+        }
+        th {
+            background-color: #2c2c2c;
+        }
+        tr:hover {
+            background-color: #333;
+        }
+        .view-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .view-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(0, 50, 255, 0.7); 
+            background-color: #0056b3; 
+            outline: 2px solid #007bff; 
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="brand">CarCaddy</div>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Employee Dashboard</h1>
+            <button class="view-button" onclick="openProfile()" >View Profile</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>emp_id</th>
+                    <th>DOB</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>acct_type</th>
+                    <th>exp_date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="employee-data">
+                <!-- Dynamic Data Rows -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Example employee data (you can fetch this from an API or backend)
+        const employees = [
+            { emp_id: '1', dob: '1990-01-01', contact: '1234567890', email: 'emp1@carcaddy.com', acct_type: 'Temporary', exp_date: '2025-01-01', status: 'Active' },
+            { emp_id: '2', dob: '1985-05-05', contact: '9876543210', email: 'emp2@carcaddy.com', acct_type: 'Permanent', exp_date: 'N/A', status: 'Inactive' },
+        ];
+
+        // Function to populate the table dynamically
+        function populateTable() {
+            const tableBody = document.getElementById('employee-data');
+            employees.forEach(employee => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${employee.emp_id}</td>
+                    <td>${employee.dob}</td>
+                    <td>${employee.contact}</td>
+                    <td>${employee.email}</td>
+                    <td>${employee.acct_type}</td>
+                    <td>${employee.exp_date}</td>
+                    <td>${employee.status}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to handle logout
+        function logout() {
+            alert('Logging out...');
+            window.location.href = 'loginPage.html'; // Redirect to the login page
+        }
+
+        // Function to open profile
+        function openProfile() {
+            window.location.href = 'profile.html'; // Redirect to the login page
+        }
+          
+        // Populate the table on page load
+        window.onload = populateTable;
+    </script>
+</body>
+</html>
