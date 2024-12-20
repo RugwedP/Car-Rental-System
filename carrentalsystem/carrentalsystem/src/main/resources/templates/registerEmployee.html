@@ -181,10 +181,7 @@
             <button type="submit" class="btn-submit">Submit</button>
         </form>
 
-        <!-- JavaScript to handle alert and redirect after submission -->
         <script>
-
-            
             // Get references to the select field and expiry date input field
             const accountTypeSelect = document.getElementById("accountType");
             const expiryDateInput = document.getElementById("date");
@@ -206,18 +203,14 @@
 
             document.addEventListener("DOMContentLoaded", function () {
                 document.querySelector('form').onsubmit = function (event) {
-                    event.preventDefault(); // Prevent the form from submitting the default way
+                    event.preventDefault(); 
             
-                    // Dynamically get the employee name from the input field
                     var employeeName = document.getElementById("employeeName").value;
-            
-                    // Define the default password (or get it from Thymeleaf dynamically)
                     var defaultPassword = `${defaultPassword}`; 
             
                     // Display the entered employee name and default password in an alert
                     alert('Account has Created!!! ' + '\nEmployee Name: ' + employeeName + '\nDefault Password: ' + defaultPassword);
             
-                    // Redirect to the next page after alert
                     window.location.href = "loginPage.html";
                 };
             });            

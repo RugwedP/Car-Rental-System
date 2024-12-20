@@ -74,6 +74,7 @@
             box-shadow: 0 6px 12px rgba(0, 123, 255, 0.9); 
             background-color: #0056b3; 
             outline: 2px solid #007bff; 
+            color: #c0c0c0;
         }
     </style>
 </head>
@@ -114,25 +115,24 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const employeeData = JSON.parse(localStorage.getItem("employeeData"));
-    
-            if (employeeData) {
-                document.querySelector(".avatar").textContent = employeeData.employeeName.charAt(0);
-                document.querySelector(".avatar-container h3").textContent = employeeData.employeeName;
-    
-                document.querySelector("p[th\\:text='${employee.dateOfBirth}']").textContent = employeeData.dateOfBirth;
-                document.querySelector("p[th\\:text='${employee.employeeEmail}']").textContent = employeeData.employeeEmail;
-                document.querySelector("p[th\\:text='${employee.accountType}']").textContent = employeeData.accountType;
-                document.querySelector("p[th\\:text='${employee.designation}']").textContent = employeeData.designation;
-                document.querySelector("p[th\\:text='${employee.accountExpiryDate}']").textContent =
-                    employeeData.accountExpiryDate || "N/A";
-                document.querySelector("p[th\\:text='${employee.status}']").textContent = employeeData.status;
-            }
-        });
-    </script>
-    
+    // <script>
+    //     document.addEventListener("DOMContentLoaded", function () {
+    //         const employeeData = JSON.parse(localStorage.getItem("employeeData"));
+    // 
+    //         if (employeeData) {
+    //             document.querySelector(".avatar").textContent = employeeData.employeeName.charAt(0);
+    //             document.querySelector(".avatar-container h3").textContent = employeeData.employeeName;
+    // 
+    //             document.querySelector("p[th\\:text='${employee.dateOfBirth}']").textContent = employeeData.dateOfBirth;
+    //             document.querySelector("p[th\\:text='${employee.employeeEmail}']").textContent = employeeData.employeeEmail;
+    //             document.querySelector("p[th\\:text='${employee.accountType}']").textContent = employeeData.accountType;
+    //             document.querySelector("p[th\\:text='${employee.designation}']").textContent = employeeData.designation;
+    //             document.querySelector("p[th\\:text='${employee.accountExpiryDate}']").textContent =
+    //                 employeeData.accountExpiryDate || "N/A";
+    //             document.querySelector("p[th\\:text='${employee.status}']").textContent = employeeData.status;
+    //         }
+    //     });
+    // </script>
 </body>
 
 </html>
