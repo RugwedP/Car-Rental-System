@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
+=======
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Employee - CarCaddy</title>
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="navbar.html">
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
     <style>
         body {
             margin: 0;
@@ -12,7 +19,10 @@
             background-color: #121212;
             color: #f0f0f0;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
         .navbar {
             background-color: #1f1f1f;
             color: #fff;
@@ -22,6 +32,7 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
+<<<<<<< HEAD
 
         .navbar .brand {
             font-size: 1.5em;
@@ -30,6 +41,13 @@
             /* Blue color for the brand */
         }
 
+=======
+        .navbar .brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff; /* Blue color for the brand */
+        }
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
         .nav-links a {
             color: #fff;
             text-decoration: none;
@@ -37,7 +55,10 @@
             transition: color 0.3s;
             position: relative;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -45,6 +66,7 @@
             left: 0;
             width: 0;
             height: 2px;
+<<<<<<< HEAD
             background-color: #007bff;
             transition: width 0.3s ease;
         }
@@ -57,6 +79,17 @@
             width: 100%;
         }
 
+=======
+            background-color: #007bff; 
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #007bff;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
         .form-container {
             max-width: 600px;
             margin: 50px auto;
@@ -64,6 +97,7 @@
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+<<<<<<< HEAD
             transition: background-color 0.3s;
         }
 
@@ -73,15 +107,28 @@
             margin-bottom: 20px;
         }
 
+=======
+            transition: background-color 0.3s; 
+        }
+        h1 {
+            color: #007bff; 
+            text-align: center;
+            margin-bottom: 20px;
+        }
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
         form label {
             display: block;
             margin-bottom: 8px;
             font-size: 1.1em;
             color: #ccc;
         }
+<<<<<<< HEAD
 
         form input,
         form select {
+=======
+        form input, form select {
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -92,6 +139,7 @@
             font-size: 1em;
             transition: box-shadow 0.3s;
         }
+<<<<<<< HEAD
 
         form input:focus,
         form select:focus {
@@ -99,11 +147,21 @@
             outline: none;
         }
 
+=======
+        form input:focus, form select:focus {
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.8); 
+            outline: none;
+        }
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
         .btn-submit {
             display: block;
             width: 100%;
             padding: 12px;
+<<<<<<< HEAD
             background-color: #007bff;
+=======
+            background-color: #007bff; 
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
             color: #fff;
             font-weight: bold;
             border: none;
@@ -112,6 +170,7 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
+<<<<<<< HEAD
 
         .btn-submit:hover {
                 transform: translateY(-5px);
@@ -122,6 +181,16 @@
     </style>
 </head>
 
+=======
+        .btn-submit:hover {
+            background-color: #0056b3; 
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.6);
+            outline: 2px solid #0056b3; 
+        }
+    </style>
+</head>
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
 <body>
     <div>
         <div class="navbar">
@@ -138,6 +207,7 @@
 
     <div class="form-container">
         <h1>Add Employee Info</h1>
+<<<<<<< HEAD
         <form th:action="@{/registerEmployee}" th:object="${employee}" method="post">
 
             <label for="employeeName">Employee Name</label>
@@ -170,6 +240,27 @@
 
             <label for="date">Date Of Expiry</label>
             <input type="date" id="date" name="date" th:field="*{accountExpiryDate}" required>
+=======
+        <form action="#" method="post">
+            
+            <label for="employeeName">Employee Name</label>
+            <input type="text" id="employeeName" name="employeeName" placeholder="Enter Employee Name" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter Email Address" required>
+
+            <label for="accountType">Account Type</label>
+            <select id="accountType" name="accountType">
+                <option value="Manager">Temporary Account</option>
+                <option value="Staff">Permanent Account</option>
+            </select>
+
+            <label for="date">Date Of Expiry</label>
+            <input type="date" id="date" name="date" required>
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
 
             <label for="status">Status:</label>
             <select id="status" th:field="*{status}" required>
@@ -178,6 +269,7 @@
                 <option value="Inactive">Inactive</option>
             </select>
 
+<<<<<<< HEAD
             <button type="submit" class="btn-submit">Submit</button>
         </form>
 
@@ -226,3 +318,10 @@
 </body>
 
 </html>
+=======
+            <button type="submit" class="btn-submit" href="registrationSuccess.html" th:action="@{/registerEmployee}">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+>>>>>>> d8d393c4485694adb42c07f16806292de95e243d
