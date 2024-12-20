@@ -115,46 +115,30 @@
         <table>
             <thead>
                 <tr>
-                    <th>emp_id</th>
-                    <th>DOB</th>
+                    <th>Employee Id</th>
+                    <th>Date of Birth</th>
                     <th>Contact</th>
                     <th>Email</th>
-                    <th>acct_type</th>
-                    <th>exp_date</th>
+                    <th>Account Type</th>
+                    <th>Date of Expiry</th>
                     <th>Status</th>
                 </tr>
             </thead>
             <tbody id="employee-data">
-                <!-- Dynamic Data Rows -->
+                <tr th:each="employee : ${employee}">
+                    <td th:text="${employee.emp_id}"></td>
+                    <td th:text="${employee.dateOfBirth}"></td>
+                    <td th:text="${employee.contact}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.accountType}"></td>
+                    <td th:text="${employee.dateOfBirth}"></td>
+                    <td th:text="${employee.status}"></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <script>
-        // Example employee data (you can fetch this from an API or backend)
-        const employees = [
-            { emp_id: '1', dob: '1990-01-01', contact: '1234567890', email: 'emp1@carcaddy.com', acct_type: 'Temporary', exp_date: '2025-01-01', status: 'Active' },
-            { emp_id: '2', dob: '1985-05-05', contact: '9876543210', email: 'emp2@carcaddy.com', acct_type: 'Permanent', exp_date: 'N/A', status: 'Inactive' },
-        ];
-
-        // Function to populate the table dynamically
-        function populateTable() {
-            const tableBody = document.getElementById('employee-data');
-            employees.forEach(employee => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${employee.emp_id}</td>
-                    <td>${employee.dob}</td>
-                    <td>${employee.contact}</td>
-                    <td>${employee.email}</td>
-                    <td>${employee.acct_type}</td>
-                    <td>${employee.exp_date}</td>
-                    <td>${employee.status}</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
         // Function to handle logout
         function logout() {
             alert('Logging out...');
