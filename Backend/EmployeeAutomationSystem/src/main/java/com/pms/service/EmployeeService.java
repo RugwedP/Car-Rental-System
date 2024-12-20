@@ -2,6 +2,7 @@ package com.pms.service;
 
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class EmployeeService {
 	        }
 
 
-	        // Set account expiry date automatically for 'temporary' account type
+	        // Set account  date automatically for 'temporary' account type
 	        if ("temporary".equalsIgnoreCase(employee.getAccountType())) {
 	            LocalDate expiryDate = LocalDate.now().plusYears(1); // 1 year from now
 	            employee.setAccountExpiryDate(expiryDate);
@@ -75,6 +76,9 @@ public class EmployeeService {
 	        // Return false if the employee doesn't exist or the passwords don't match
 	        return false;
 	    }
-
-	
+	 public List<Employee> getAllEmployees() {
+	        // Fetch all employees from the database and return the list
+	        return employeeRepository.findAll();
+	    }
+	 
 }

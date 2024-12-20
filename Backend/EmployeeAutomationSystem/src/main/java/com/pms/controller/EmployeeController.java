@@ -3,6 +3,7 @@ package com.pms.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,7 @@ import com.pms.model.Employee;
 import com.pms.service.EmployeeService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -47,4 +49,14 @@ public class EmployeeController {
 
         return new ResponseEntity<>("Password updated successfully.", HttpStatus.OK); // 200 OK
     }
+    
+    @GetMapping("/getAllEmployees")
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = employeeService.getAllEmployees();  // Fetch all employees from the service
+        if (employees.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 No Content if the list is empty
+        }
+        return new ResponseEntity<>(employees, HttpStatus.OK); // 200 OK with the list of employees
+    } 
+
 }
