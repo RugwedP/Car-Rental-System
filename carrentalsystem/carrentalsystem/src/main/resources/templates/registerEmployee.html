@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Employee - CarCaddy</title>
-    <link rel="stylesheet" href="navbar.html">
     <style>
         body {
             margin: 0;
@@ -12,6 +12,7 @@
             background-color: #121212;
             color: #f0f0f0;
         }
+
         .navbar {
             background-color: #1f1f1f;
             color: #fff;
@@ -21,11 +22,14 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
+
         .navbar .brand {
             font-size: 1.5em;
             font-weight: bold;
-            color: #007bff; /* Blue color for the brand */
+            color: #007bff;
+            /* Blue color for the brand */
         }
+
         .nav-links a {
             color: #fff;
             text-decoration: none;
@@ -33,6 +37,7 @@
             transition: color 0.3s;
             position: relative;
         }
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -40,15 +45,18 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: #007bff; 
+            background-color: #007bff;
             transition: width 0.3s ease;
         }
+
         .nav-links a:hover {
             color: #007bff;
         }
+
         .nav-links a:hover::after {
             width: 100%;
         }
+
         .form-container {
             max-width: 600px;
             margin: 50px auto;
@@ -56,20 +64,24 @@
             border-radius: 10px;
             padding: 30px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-            transition: background-color 0.3s; 
+            transition: background-color 0.3s;
         }
+
         h1 {
-            color: #007bff; 
+            color: #007bff;
             text-align: center;
             margin-bottom: 20px;
         }
+
         form label {
             display: block;
             margin-bottom: 8px;
             font-size: 1.1em;
             color: #ccc;
         }
-        form input, form select {
+
+        form input,
+        form select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -80,15 +92,18 @@
             font-size: 1em;
             transition: box-shadow 0.3s;
         }
-        form input:focus, form select:focus {
-            box-shadow: 0 0 8px rgba(0, 123, 255, 0.8); 
+
+        form input:focus,
+        form select:focus {
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.8);
             outline: none;
         }
+
         .btn-submit {
             display: block;
             width: 100%;
             padding: 12px;
-            background-color: #007bff; 
+            background-color: #007bff;
             color: #fff;
             font-weight: bold;
             border: none;
@@ -97,14 +112,16 @@
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
+
         .btn-submit:hover {
-            background-color: #0056b3; 
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.6);
-            outline: 2px solid #0056b3; 
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 123, 255, 0.9); 
+                background-color: #0056b3; 
+                outline: 2px solid #007bff; 
         }
     </style>
 </head>
+
 <body>
     <div>
         <div class="navbar">
@@ -121,25 +138,38 @@
 
     <div class="form-container">
         <h1>Add Employee Info</h1>
-        <form action="#" method="post">
-            
+        <form th:action="@{/registerEmployee}" th:object="${employee}" method="post">
+
             <label for="employeeName">Employee Name</label>
-            <input type="text" id="employeeName" name="employeeName" placeholder="Enter Employee Name" required>
+            <input type="text" id="employeeName" th:field="*{employeeName}" name="employeeName"
+                placeholder="Enter Employee Name" required>
 
             <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" name="dob" required>
+            <input type="date" id="dob" name="dob" th:field="*{dateOfBirth}" required>
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Enter Email Address" required>
+            <input type="email" id="email" name="email" th:field="*{employeeEmail}" placeholder="Enter Email Address"
+                required>
 
             <label for="accountType">Account Type</label>
-            <select id="accountType" name="accountType">
-                <option value="Manager">Temporary Account</option>
-                <option value="Staff">Permanent Account</option>
+            <select id="accountType" th:field="*{accountType}">
+                <option value="Temporary">Temporary Account</option>
+                <option value="Permanent">Permanent Account</option>
+            </select>
+
+            <label for="designation">Designation</label>
+            <select id="designation" th:field="*{designation}" required>
+                <option value="">--Select Designation--</option>
+                <option value="Vehicle Inspector">Vehicle Inspector</option>
+                <option value="Maintenance Technician">Maintenance Technician</option>
+                <option value="Finance Manager">Finance Manager</option>
+                <option value="General Manager (GM)">General Manager (GM)</option>
+                <option value="HR Manager">HR Manager</option>
+                <option value="Rental Agent">Rental Agent</option>
             </select>
 
             <label for="date">Date Of Expiry</label>
-            <input type="date" id="date" name="date" required>
+            <input type="date" id="date" name="date" th:field="*{accountExpiryDate}" required>
 
             <label for="status">Status:</label>
             <select id="status" th:field="*{status}" required>
@@ -148,8 +178,44 @@
                 <option value="Inactive">Inactive</option>
             </select>
 
-            <button type="submit" class="btn-submit" href="registrationSuccess.html" th:action="@{/registerEmployee}">Submit</button>
+            <button type="submit" class="btn-submit">Submit</button>
         </form>
+
+        <script>
+            // Get references to the select field and expiry date input field
+            const accountTypeSelect = document.getElementById("accountType");
+            const expiryDateInput = document.getElementById("date");
+
+            // Function to enable/disable the expiry date input based on account type
+            function toggleExpiryDate() {
+                if (accountTypeSelect.value === "Permanent") {
+                    expiryDateInput.disabled = true;  // Disable expiry date if Permanent is selected
+                } else {
+                    expiryDateInput.disabled = false; // Enable expiry date if Temporary is selected
+                }
+            }
+
+            // Call the toggleExpiryDate function when the page loads and whenever the account type changes
+            accountTypeSelect.addEventListener("change", toggleExpiryDate);
+
+            // Initialize the state on page load
+            window.onload = toggleExpiryDate;
+
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelector('form').onsubmit = function (event) {
+                    event.preventDefault(); 
+            
+                    var employeeName = document.getElementById("employeeName").value;
+                    var defaultPassword = `${defaultPassword}`; 
+            
+                    // Display the entered employee name and default password in an alert
+                    alert('Account has Created!!! ' + '\nEmployee Name: ' + employeeName + '\nDefault Password: ' + defaultPassword);
+            
+                    window.location.href = "loginPage.html";
+                };
+            });            
+        </script>
     </div>
 </body>
+
 </html>
