@@ -41,6 +41,14 @@ public class EmployeeController {
         String defaultPassword = passwordData.get("defaultPassword");
         String newPassword = passwordData.get("newPassword");
 
+        // Validate newPassword strength
+        if (!isStrongPassword(newPassword)) {
+            return new ResponseEntity<>(
+                "New password must be at least 8 characters long, and include an uppercase letter, a lowercase letter, a number, and a special character.", 
+                HttpStatus.BAD_REQUEST
+            ); // 400 Bad Request
+        }
+
         boolean isUpdated = employeeService.replacePasswordIfValid(empId, defaultPassword, newPassword);
 
         if (!isUpdated) {
@@ -49,7 +57,38 @@ public class EmployeeController {
 
         return new ResponseEntity<>("Password updated successfully.", HttpStatus.OK); // 200 OK
     }
-    
+
+    // Utility method to check if the password is strong
+    private boolean isStrongPassword(String password) {
+        if (password == null || password.length() < 8) {
+            return false;
+        }
+
+        boolean hasUppercase = false;
+        boolean hasLowercase = false;
+        boolean hasNumber = false;
+        boolean hasSpecialChar = false;
+
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                hasUppercase = true;
+            } else if (Character.isLowerCase(c)) {
+                hasLowercase = true;
+            } else if (Character.isDigit(c)) {
+                hasNumber = true;
+            } else if (!Character.isLetterOrDigit(c)) {
+                hasSpecialChar = true;
+            }
+
+            // Break early if all conditions are met
+            if (hasUppercase && hasLowercase && hasNumber && hasSpecialChar) {
+                return true;
+            }
+        }
+
+        return hasUppercase && hasLowercase && hasNumber && hasSpecialChar;
+    }
+
     @GetMapping("/getAllEmployees")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();  // Fetch all employees from the service
@@ -59,4 +98,5 @@ public class EmployeeController {
         return new ResponseEntity<>(employees, HttpStatus.OK); // 200 OK with the list of employees
     } 
 
+    
 }
