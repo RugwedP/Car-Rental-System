@@ -125,13 +125,13 @@
                 </tr>
             </thead>
             <tbody id="employee-data">
-                <tr th:each="employee : ${employee}">
-                    <td th:text="${employee.emp_id}"></td>
+                <tr th:each="employee : ${employees}">
+                    <td th:text="${employee.employeeId}"></td>
                     <td th:text="${employee.dateOfBirth}"></td>
                     <td th:text="${employee.contact}"></td>
                     <td th:text="${employee.email}"></td>
                     <td th:text="${employee.accountType}"></td>
-                    <td th:text="${employee.dateOfBirth}"></td>
+                    <td th:text="${employee.dateOfExpiry}"></td>
                     <td th:text="${employee.status}"></td>
                 </tr>
             </tbody>
@@ -151,7 +151,7 @@
         }
           
         // Populate the table on page load
-        window.onload = populateTable;
+        // window.onload = populateTable;
     </script>
 </body>
 </html>

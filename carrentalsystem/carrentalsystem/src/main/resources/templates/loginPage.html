@@ -110,7 +110,7 @@
         <div class="navbar">
             <div class="brand">CarCaddy</div>
             <div class="nav-links">
-                <a href="index.html">Employee Management</a>
+                <a th:href="@{/}">Employee Management</a>
                 <a href="#">Car Management</a>
                 <a href="#">Customer Management</a>
                 <a href="#">Rental Management</a>
@@ -121,42 +121,40 @@
 
     <div class="form-container">
         <h1>Login</h1>
-        <form action="/login" method="post">
+        <form action="/firstLogin" method="post">
             
-            <label for="employeeName">Employee Name</label>
-            <input type="text" id="employeeName" th:field="*{employeeName}" name="employeeName"
-            placeholder="Enter Employee Name" required>
+            <label for="employeeId">Employee Id</label>
+            <input type="employeeId" id="employeeId" name="employeeId" th:value="${employeeId}"
+            readonly>
 
-            <label for="oldPassword">Old Password</label>
-            <input type="password" id="oldPassword" name="oldPassword" placeholder="Enter Old Password" th:field="*{oldPassword}" required>
+            <label for="defaultPassword">Old Password</label>
+            <input type="text" id="defaultPassword" name="defaultPassword" th:value="${defaultPassword}"  readonly>
 
             <label for="newPassword">New Password</label>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Enter New Password" th:field="*{newPassword}" required>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Enter New Password"  required>
 
             <button type="submit" class="btn-submit">Login</button>
+			
+
         </form>
+			<div id="message" th:text="${message}" style="display: none;"></div>
+			<div id="error" th:text="${error}" style="display: none;"></div>
 
         <!-- JavaScript to handle alert and redirect after submission -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                document.querySelector('form').onsubmit = function(event) {
-                    event.preventDefault(); // Prevent the form from submitting the default way
+		<script>
+		    /* Display Success Message */
+		    const message = document.getElementById('message').innerText;
+			console.log(message);
+		    if (message) {
+		        alert(message);
+		    }
 
-                    // Here you can add any logic to verify user details
-                    // For now, let's show an alert with the entered values
-                    var employeeName = document.getElementById("employeeName").value;
-                    var oldPassword = document.getElementById("oldPassword").value;
-                    var newPassword = document.getElementById("newPassword").value;
-
-
-                     alert('Employee Name: ' + employeeName + '\nOld Password: ' + oldPassword + '\nNew Password: ' + newPassword);
-                     //localStorage.setItem("employeePassword", newPassword);
-
-                    // Redirect to the next page after alert
-                     window.location.href = "dashboard.html"; // Replace with your actual dashboard URL
-                };
-            });
-        </script>
+		    /* Display Error Message */
+		    const error = document.getElementById('error').innerText;
+		    if (error) {
+		        alert(error);
+		    }
+		</script>
     </div>
 </body>
 </html>

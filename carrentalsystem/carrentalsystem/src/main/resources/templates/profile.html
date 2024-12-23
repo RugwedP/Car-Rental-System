@@ -84,7 +84,7 @@
         <!-- Left Side: Avatar -->
         <div class="avatar-container">
             <div class="avatar" th:text="${employee.employeeName.substring(0, 1)}">A</div>
-            <h3 th:text="${employee.employeeName}" style="color: #ffffff; margin-top: 10px;">Employee Name</h3>
+            <h3 th:text="${employee.employeeName}" style="margin-top: 10px;">Employee Name</h3>
         </div>
 
         <!-- Right Side: Profile Data -->
@@ -107,7 +107,7 @@
             <h5>Status</h5>
             <p th:text="${employee.status}">Active</p>
 
-            <a href="dashboard.html" class="btn-back">Back to Dashboard</a>
+            <a href="/dashboard" class="btn-back">Back to Dashboard</a>
         </div>
     </div>
 
