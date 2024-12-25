@@ -16,4 +16,5 @@ public class CarrentalsystemApplication {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+
 }

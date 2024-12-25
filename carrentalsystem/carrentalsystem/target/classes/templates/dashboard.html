@@ -98,27 +98,68 @@
             background-color: #0056b3; 
             outline: 2px solid #007bff; 
         }
+		.navbar {
+		            background-color: rgba(0, 0, 0, 0.85); 
+		            color: #fff;
+		            padding: 15px 10%;
+		            display: flex;
+		            justify-content: space-between;
+		            align-items: center;
+		            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+		        }
+		        .navbar .brand {
+		            font-size: 1.5em;
+		            font-weight: bold;
+		            color: #007bff; 
+		        }
+		        .nav-links a {
+		            color: #fff;
+		            text-decoration: none;
+		            margin-left: 15px;
+		            transition: color 0.3s, border-bottom 0.3s ease;
+		            position: relative;
+		        }
+		        .nav-links a::after {
+		            content: '';
+		            position: absolute;
+		            bottom: 0;
+		            left: 0;
+		            width: 0;
+		            height: 2px;
+		            background-color: #007bff; 
+		            transition: width 0.3s ease;
+		        }
+		        .nav-links a:hover {
+		            color: #007bff;
+		        }
+		        .nav-links a:hover::after {
+		            width: 100%; 
+		        }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="brand">CarCaddy</div>
-        <button onclick="logout()">Logout</button>
-    </div>
+	<div class="navbar">
+	       <div class="brand">CarCaddy</div>
+	       <div class="nav-links">
+	           <a th:href="@{/}">Employee Management</a>
+	           <a href="#">Car Management</a>
+	           <a href="#">Customer Management</a>
+	           <a href="#">Rental Management</a>
+	           <a href="#">Reports</a>
+	       </div>
+	   </div>
 
     <div class="dashboard-container">
-        <div class="dashboard-header">
-            <h1>Employee Dashboard</h1>
-            <button class="view-button" onclick="openProfile()" >View Profile</button>
-        </div>
+        
 
         <table>
             <thead>
                 <tr>
                     <th>Employee Id</th>
+					<th>Employee Name</th>
                     <th>Date of Birth</th>
-                    <th>Contact</th>
                     <th>Email</th>
+					<th>Designation</th>
                     <th>Account Type</th>
                     <th>Date of Expiry</th>
                     <th>Status</th>
@@ -127,11 +168,12 @@
             <tbody id="employee-data">
                 <tr th:each="employee : ${employees}">
                     <td th:text="${employee.employeeId}"></td>
+					<td th:text="${employee.employeeName}"></td>
                     <td th:text="${employee.dateOfBirth}"></td>
-                    <td th:text="${employee.contact}"></td>
-                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.employeeEmail}"></td>
+					<td th:text="${employee.designation}"></td>
                     <td th:text="${employee.accountType}"></td>
-                    <td th:text="${employee.dateOfExpiry}"></td>
+                    <td th:text="${employee.accountExpiryDate}"></td>
                     <td th:text="${employee.status}"></td>
                 </tr>
             </tbody>

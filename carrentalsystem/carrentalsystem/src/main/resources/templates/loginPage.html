@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - CarCaddy</title>
     <link rel="stylesheet" href="navbar.html">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
@@ -103,6 +105,29 @@
             background-color: #0056b3; 
             outline: 2px solid #007bff; 
         }
+		
+		.password-container {
+		    position: relative;
+		    display: flex;
+		    align-items: center;
+		}
+
+		.password-container input {
+		    width: 100%;
+		    padding-right: 30px; /* Space for the icon */
+		}
+
+		.password-container .toggle-password {
+		    position: absolute;
+		    right: 10px;
+		    cursor: pointer;
+		    color: #888;
+		}
+
+		.password-container .toggle-password:hover {
+		    color: #000;
+		}
+
     </style>
 </head>
 <body>
@@ -119,42 +144,58 @@
         </div>
     </div>
 
-    <div class="form-container">
-        <h1>Login</h1>
-        <form action="/firstLogin" method="post">
-            
-            <label for="employeeId">Employee Id</label>
-            <input type="employeeId" id="employeeId" name="employeeId" th:value="${employeeId}"
-            readonly>
+	<div class="form-container">
+	    <h1>Login</h1>
+	    <form action="/firstLogin" method="post">
+	        <label for="employeeId">Employee Id</label>
+	        <input type="text" id="employeeId" name="employeeId" th:value="${employeeId}" readonly>
 
-            <label for="defaultPassword">Old Password</label>
-            <input type="text" id="defaultPassword" name="defaultPassword" th:value="${defaultPassword}"  readonly>
+	        <label for="defaultPassword">Old Password</label>
+	        <input type="text" id="defaultPassword" name="defaultPassword" th:value="${defaultPassword}" readonly>
 
-            <label for="newPassword">New Password</label>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Enter New Password"  required>
+	        <label for="newPassword">New Password</label>
+	        <div class="password-container">
+	            <input type="password" id="newPassword" name="newPassword" placeholder="Enter New Password" required>
+	            <span class="toggle-password" onclick="togglePasswordVisibility()">
+	                <i id="password-icon" class="fa fa-eye"></i>
+	            </span>
+	        </div>
 
-            <button type="submit" class="btn-submit">Login</button>
-			
+	        <button type="submit" class="btn-submit">Login</button>
+	    </form>
+	    
+	    <div id="message" th:text="${message}" style="display: none;"></div>
+	    <div id="error" th:text="${error}" style="display: none;"></div>
 
-        </form>
-			<div id="message" th:text="${message}" style="display: none;"></div>
-			<div id="error" th:text="${error}" style="display: none;"></div>
+	    <!-- JavaScript to handle alert and redirect after submission -->
+	    <script>
+	        /* Display Success Message */
+	        const message = document.getElementById('message').innerText;
+	        if (message) {
+	            alert(message);
+	        }
 
-        <!-- JavaScript to handle alert and redirect after submission -->
-		<script>
-		    /* Display Success Message */
-		    const message = document.getElementById('message').innerText;
-			console.log(message);
-		    if (message) {
-		        alert(message);
-		    }
+	        /* Display Error Message */
+	        const error = document.getElementById('error').innerText;
+	        if (error) {
+	            alert(error);
+	        }
 
-		    /* Display Error Message */
-		    const error = document.getElementById('error').innerText;
-		    if (error) {
-		        alert(error);
-		    }
-		</script>
-    </div>
+	        /* Toggle Password Visibility */
+	        function togglePasswordVisibility() {
+	            const passwordField = document.getElementById('newPassword');
+	            const passwordIcon = document.getElementById('password-icon');
+	            if (passwordField.type === 'password') {
+	                passwordField.type = 'text';
+	                passwordIcon.classList.remove('fa-eye');
+	                passwordIcon.classList.add('fa-eye-slash');
+	            } else {
+	                passwordField.type = 'password';
+	                passwordIcon.classList.remove('fa-eye-slash');
+	                passwordIcon.classList.add('fa-eye');
+	            }
+	        }
+	    </script>
+	</div>
 </body>
 </html>

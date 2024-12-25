@@ -132,6 +132,8 @@
             <label for="email">Email</label>
             <input type="email" id="email" name="email" th:field="*{employeeEmail}" placeholder="Enter Email Address" required>
 			
+			
+
             <label for="accountType">Account Type</label>
 		     <select id="accountType" th:field="*{accountType}">                
 			    <option value="Temporary">Temporary Account</option>
@@ -158,6 +160,7 @@
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
             </select>
+
             <button type="submit" class="btn-submit">Submit</button>
         </form>
     </div>
