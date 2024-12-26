@@ -66,7 +66,7 @@ public class EmployeeController {
     @PutMapping("/firstLogin/{email}")
     public ResponseEntity<String> handleFirstLogin(@PathVariable String email, @RequestBody Map<String, String> passwordData) {
         // Extract defaultPassword and newPassword from the request body
-    	System.out.println("HIIIIII");
+    	System.out.println("HI");
     	System.out.println(email);
     	System.out.println(passwordData.get("defaultPassword"));
     	System.out.println(passwordData.get("newPassword"));
@@ -127,5 +127,16 @@ public class EmployeeController {
         }
         return new ResponseEntity<>(employees, HttpStatus.OK); // 200 OK with the list of employees
     }
+    @PutMapping("/deactivateEmployee/{employeeId}")
+    public ResponseEntity<String> deactivateEmployee(@PathVariable int employeeId) {
+        boolean isDeactivated = employeeService.deactivateEmployee(employeeId);
+        if (isDeactivated) {
+            return new ResponseEntity<>("Employee deactivated successfully.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Employee not found or already deactivated.", HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    
 
 }
