@@ -20,6 +20,7 @@ public class Employee {
     private String defaultPassword;
     private LocalDate accountExpiryDate;
     private String status; // active or inactive
+    private int ActiveStatus; // 0 for inactive, 1 for active
 
     // Getters and Setters
     public int getEmployeeId() {
@@ -85,4 +86,15 @@ public class Employee {
     public void setStatus(String status) {
         this.status = status;
     }
+    // Getters and Setters for ActiveStatus
+public int getActiveStatus() {
+    return ActiveStatus;
 }
+public void setActiveStatus(int activeStatus) {
+    ActiveStatus = activeStatus;
+}
+}
+
+
+
+
