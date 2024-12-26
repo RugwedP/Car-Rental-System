@@ -3,6 +3,7 @@ package com.pms.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,8 +73,34 @@ public class EmployeeService {
 	}
 
 	public List<Employee> getAllEmployees() {
-		// Fetch all employees from the database and return the list
-		return employeeRepository.findAll();
+    // Fetch all employees from the database
+    List<Employee> employees = employeeRepository.findAll();
+
+    // Filter out employees whose status is not "Active"
+    return employees.stream()
+                    .filter(employee -> "Active".equalsIgnoreCase(employee.getStatus()))
+                    .collect(Collectors.toList());
+}
+
+
+
+public boolean deactivateEmployee(int employeeId) {
+	Optional<Employee> employeeOptional = employeeRepository.findById(employeeId);
+	if (employeeOptional.isPresent()) {
+		Employee employee = employeeOptional.get();
+
+		// Check if the employee is active before deactivating
+		if ("Active".equalsIgnoreCase(employee.getStatus())) {
+			employee.setStatus("inactive");
+			employeeRepository.save(employee);
+			return true;
+		}
 	}
+	return false;
+}
+	
 
 }
+
+
+
