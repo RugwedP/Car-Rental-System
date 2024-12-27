@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Employee - CarCaddy</title>
+    <link rel="stylesheet" href="navbar.html">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        .navbar {
+            background-color: #1f1f1f;
+            color: #fff;
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .navbar .brand {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff; /* Blue color for the brand */
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #007bff; 
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #007bff;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+            transition: background-color 0.3s; 
+        }
+        h1 {
+            color: #007bff; 
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            color: #ccc;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #2c2c2c;
+            border: none;
+            border-radius: 5px;
+            color: #f0f0f0;
+            font-size: 1em;
+            transition: box-shadow 0.3s;
+        }
+        form input:focus, form select:focus {
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.8); 
+            outline: none;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff; 
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3; 
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.6);
+            outline: 2px solid #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div class="navbar">
+            <div class="brand">CarCaddy</div>
+            <div class="nav-links">
+                <a th:href="@{/}">Employee Management</a>
+                <a href="#">Car Management</a>
+                <a href="#">Customer Management</a>
+                <a href="#">Rental Management</a>
+                <a href="#">Reports</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-container">
+        <h1>Add Employee Info</h1>
+        <form th:action="@{/registerEmployee}" th:object="${employee}" method="post">
+            
+            <label for="employeeName">Employee Name</label>
+            <input type="text" id="employeeName" th:field="*{employeeName}" name="employeeName" placeholder="Enter Employee Name" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" th:field="*{dateOfBirth}" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" th:field="*{employeeEmail}" placeholder="Enter Email Address" required>
+			
+			
+
+            <label for="accountType">Account Type</label>
+		     <select id="accountType" th:field="*{accountType}">                
+			    <option value="Temporary">Temporary Account</option>
+                <option value="Permanent">Permanent Account</option>
+            </select>
+			
+			<label for="designation">Designation</label>
+			<select id="designation" th:field="*{designation}" required>   
+				<option value="">--Select Designation--</option>           	
+		    		<option value="Vehicle Inspector">Vehicle Inspector</option>
+			 		<option value="Maintenance Technician">Maintenance Technician</option>
+					<option value="Finance Manager">Finance Manager</option>
+					<option value="General Manager (GM)">General Manager (GM)</option>
+					<option value="HR Manager">HR Manager</option>
+					<option value="Rental Agent">Rental Agent</option>
+			 </select>
+
+            <label for="date">Date Of Expiry</label>
+            <input type="date" id="date" name="date" th:field="*{accountExpiryDate}" required>
+
+            <label for="status">Status:</label>
+            <select id="status" th:field="*{status}" required>
+                <option value="">--Select Status--</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+
+            <button type="submit" class="btn-submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Get references to the select field and expiry date input field
+        const accountTypeSelect = document.getElementById("accountType");
+        const expiryDateInput = document.getElementById("date");
+
+        // Function to enable/disable the expiry date input based on account type
+        function toggleExpiryDate() {
+            if (accountTypeSelect.value === "Permanent") {
+                expiryDateInput.disabled = true;  // Disable expiry date if Permanent is selected
+            } else {
+                expiryDateInput.disabled = false; // Enable expiry date if Temporary is selected
+            }
+        }
+
+        // Call the toggleExpiryDate function when the page loads and whenever the account type changes
+        accountTypeSelect.addEventListener("change", toggleExpiryDate);
+
+        // Initialize the state on page load
+        window.onload = toggleExpiryDate;
+    </script>
+</body>
+</html>
