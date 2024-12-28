@@ -137,6 +137,15 @@ public class EmployeeController {
         }
     }
     
-    
+    // End point to deactivate expired employees
+    @PutMapping("/deactivateExpiredEmployees")
+    public ResponseEntity<String> deactivateExpiredEmployees() {
+        int deactivatedCount = employeeService.deactivateExpiredEmployees();
+        if (deactivatedCount > 0) { 
+            return new ResponseEntity<>(deactivatedCount + " employees were deactivated.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("No employees needed deactivation.", HttpStatus.OK);
+        }
+    }
 
 }
