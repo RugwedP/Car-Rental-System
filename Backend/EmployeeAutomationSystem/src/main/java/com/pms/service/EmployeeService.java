@@ -98,7 +98,13 @@ public boolean deactivateEmployee(int employeeId) {
 	}
 	return false;
 }
-	
+
+	// Deactivate employees whose expiryDate has passed
+	@Transactional
+    public int deactivateExpiredEmployees() {
+        LocalDate currentDate = LocalDate.now(); // Get today's date
+        return employeeRepository.deactivateExpiredEmployees(currentDate); // Call the repository method
+    }
 
 }
 
